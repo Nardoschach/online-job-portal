@@ -1,5 +1,24 @@
 let express = require("express");
+let auth = require("./lib/routes/auth");
+let mongoose = require("mongoose");
+let session = require("express-session");
 
 let app = express();
 
-app.listen(3000,()=>{console.log("server start running")});
+
+app.use(express.json());
+app.use(session({secret: "kljdjfkdas", resave: false, saveUninitialized: true, cookie: {maxAge: 24 * 60 * 60 * 1000}}));
+app.use("/auth", auth());
+
+
+// application routes
+// app.post("/auth", auth());
+(async() => {
+   try {
+    await mongoose.connect("mongodb://127.0.0.1:27017/job-app");
+    app.listen(3000,()=>{console.log("server start running")});
+   } catch (e) {
+    console.log(e);
+   }
+
+})();
