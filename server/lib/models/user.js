@@ -5,9 +5,48 @@ let userSchema = mongoose.Schema({
         type: String,
         unique: true
     },
-    password: String,
+    password: {
+        type:String,
+        default: "",
+    },
+    firstName: {
+        type:String,
+        default: "",
+    },
+    lastName: {
+        type:String,
+        default: "",
+    },
+    gender: {
+        type:String,
+        default: "",
+    },
+    mobile: {
+        type:String,
+        default: "",
+    },
+    fieldOfStudy: {
+        type:String,
+        default: "",
+    },
+    highestEducation: {
+        type:String,
+        default: "",
+    },
+    type: {
+        type:String,
+        default: "",
+    },
+    cv: {
+        type:String,
+        default: "",
+    },
+    role: {
+        type: String,
+        default: "user"
+    }
 });
 
-let user = mongoose.model("User", userSchema);
+let user = mongoose.model("Users", userSchema);
 
 module.exports = user;
